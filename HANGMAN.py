@@ -7,7 +7,7 @@ def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
 def Hangman():
-    path = Path('russian.txt')
+    path = Path('Python/russian.txt')
     
     contents = path.read_text()
     

@@ -1691,16 +1691,24 @@ levels = {
     1686: "TRIANGULAR",
     1687: "The End is Here"
 }
-
-
+bot_change_list =  (True, False)
+bot_change = random.choice(bot_change_list)
 user_used_levels = []
 bot_used_levels = []
-
+total_user_level = 0
+total_bot_level = 0
 while True:
     bot_random = random.choice(levels)
     start_time = time.time()
     user_input = input("Введи уровень (без ошибок!): ")
     total_time = time.time() - start_time
+
+    for totaluser in user_used_levels:
+        total_user_level += 1
+
+    for totalbot in bot_used_levels:
+        total_bot_level += 1
+
     
     if total_time > 30:
         print("Ты проиграл! Ты не успел написать уровень за 10 секунд.")
@@ -1721,7 +1729,12 @@ while True:
         if bot_random == level:
             index_bot = index
             break
-    
+
+    if total_bot_level >= 10:
+        if bot_change:
+            print("Я больше не знаю, ты выйграл")
+            break
+    print(bot_change)
     print(f"{index_bot}. {bot_random}")
     bot_used_levels.append(bot_random)
     user_used_levels.append(user_input)
